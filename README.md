@@ -1,2 +1,2 @@
-# web-server-go
-Basic Web server using GO
+# web application using Golang
+Build web application integrated with bootstrap css
