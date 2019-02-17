@@ -1,4 +1,4 @@
-# web application using Golang
+# Simple Web Application Using Golang
 Build web application integrated with postgres
 
 
@@ -9,7 +9,6 @@ Build web application integrated with postgres
     
 
 # Database Application
-    ```
     CREATE DATABASE db_book_store;
 
     CREATE TABLE books (
@@ -17,4 +16,5 @@ Build web application integrated with postgres
         title VARCHAR(256),
         description VARCHAR(1024)
     );
-    ```
+    
+`created by rifannurmuhammad`
