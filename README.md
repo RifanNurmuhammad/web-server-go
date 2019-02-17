@@ -16,5 +16,3 @@ Build web application integrated with postgres
         title VARCHAR(256),
         description VARCHAR(1024)
     );
-    
-`created by rifannurmuhammad`
