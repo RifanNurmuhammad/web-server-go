@@ -9,5 +9,10 @@ env:
 
 services:
   - postgresql
+  
 addons:
   postgresql: "9.6"
+
+before_script:
+  - psql -c "CREATE USER db_book_store WITH PASSWORD 'bukapassword';" -U postgres
+  - psql -c "CREATE USER db_book_store_test WITH PASSWORD 'bukapassword';" -U postgres
