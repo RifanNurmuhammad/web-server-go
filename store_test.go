@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"testing"
 	
-	"github.com/stretchr/testigy/suite"
+	"github.com/stretchr/testify/suite"
 )
 
 type StoreSuite struct {
