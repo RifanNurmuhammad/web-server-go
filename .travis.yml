@@ -6,3 +6,8 @@ go:
 env:
   global:
   - CODECOV_TOKEN="a22f58ec-7a51-470e-9b9d-2835fb38a154"
+
+services:
+  - postgresql
+addons:
+  postgresql: "9.6"
