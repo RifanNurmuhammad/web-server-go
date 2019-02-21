@@ -2,3 +2,7 @@ language: go
 sudo: required 
 go:
   - "1.10"
+
+env:
+  global:
+  - CODECOV_TOKEN="a22f58ec-7a51-470e-9b9d-2835fb38a154"
