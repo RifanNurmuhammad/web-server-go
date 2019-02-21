@@ -9,7 +9,7 @@ type MockStore struct {
 	mock.Mock
 }
 
-func (m *MockStore) CreateBook(book *Book) error {
+func (m *MockStore) CreateBooks(book *Book) error {
 	rets := m.Called(book)
 	return rets.Error(0)
 }
