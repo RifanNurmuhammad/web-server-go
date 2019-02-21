@@ -71,7 +71,7 @@ func TestRouter(t *testing.T) {
 
 	// convert the bytes to a string
 	respString := string(b)
-	expected := "Hello World!"
+	expected := "Hello world"
 
 	if respString != expected {
 		t.Errorf("Response should be %s, got %s", expected, respString)
@@ -113,7 +113,7 @@ func TestStaticFileServer(t *testing.T) {
 	mockServer := httptest.NewServer(r)
 
 	// we want to hit the "GET /assets/" route to get the index.html
-	resp, err := http.GET(mockServer.URL + "/assets/")
+	resp, err := http.Get(mockServer.URL + "/assets/")
 	if err != nil {
 		t.Fatal(err)
 	}

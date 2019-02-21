@@ -27,7 +27,7 @@ func TestGetBooksHandler(t *testing.T) {
 	}
 	recorder := httptest.NewRecorder()
 
-	hf := http.HandlerFunc(getBookHandler)
+	hf := http.HandlerFunc(getBooksHandler)
 
 	// Now, when the handler is called, it should cal our mock store, instead of
 	// the actual one
@@ -60,11 +60,11 @@ func TestCreateBooksHandler(t *testing.T) {
 
 	mockStore := InitMockStore()
 	/*
-		Similarly, we define our expectations for th `CreateBook` method.
+		Similarly, we define our expectations for th `CreateBooks` method.
 		We expect the first argument to the method to be the Book struct
 		defined below, and tell the mock to return a `nil` error
 	*/
-	mockStore.On("CreateBook", &Book{"eagle", "A Book of prey"}).Return(nil)
+	mockStore.On("CreateBooks", &Book{"Sprint", "Sprint Design Book"}).Return(nil)
 
 	form := newCreateBookForm()
 	req, err := http.NewRequest("POST", "", bytes.NewBufferString(form.Encode()))
@@ -76,7 +76,7 @@ func TestCreateBooksHandler(t *testing.T) {
 	}
 	recorder := httptest.NewRecorder()
 
-	hf := http.HandlerFunc(createBookHandler)
+	hf := http.HandlerFunc(createBooksHandler)
 
 	hf.ServeHTTP(recorder, req)
 
@@ -89,7 +89,7 @@ func TestCreateBooksHandler(t *testing.T) {
 
 func newCreateBookForm() *url.Values {
 	form := url.Values{}
-	form.Set("species", "eagle")
-	form.Set("description", "A Book of prey")
+	form.Set("title", "Sprint")
+	form.Set("description", "Sprint Design Book")
 	return &form
 }

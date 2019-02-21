@@ -15,7 +15,7 @@ type dbStore struct {
 }
 
 func (store *dbStore) CreateBooks(book *Book) error {
-	_, err := store.db.Query("INSERT INTO books(title, description) VALUS($1, $2)", book.Title, book.Description)
+	_, err := store.db.Query("INSERT INTO books(title, description) VALUS($1,$2)", book.Title, book.Description)
 	return err
 }
 

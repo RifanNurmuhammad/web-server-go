@@ -3,19 +3,20 @@ package main
 import (
 	"database/sql"
 	"testing"
-	
+
+	// The "testify/suite" package is used to make the test suite
 	"github.com/stretchr/testify/suite"
 )
 
 type StoreSuite struct {
 	suite.Suite
-	
+
 	store *dbStore
-	db 	  *sql.DB
+	db    *sql.DB
 }
 
 func (s *StoreSuite) SetupSuite() {
-	connString := "dbname=db_book_store_test sslmode=disable"
+	connString := "dbname=db_book_store_test user=postgres password=bukapassword sslmode=disable"
 	db, err := sql.Open("postgres", connString)
 	if err != nil {
 		s.T().Fatal(err)
@@ -32,7 +33,7 @@ func (s *StoreSuite) SetupTest() {
 }
 
 func (s *StoreSuite) TearDownSuite() {
-	s.db Close()
+	s.db.Close()
 }
 
 func TestStoreSuite(t *testing.T) {
@@ -43,7 +44,7 @@ func TestStoreSuite(t *testing.T) {
 func (s *StoreSuite) TestCreateBooks() {
 	s.store.CreateBooks(&Book{
 		Description: "test description",
-		Title: 		 "test title",
+		Title:       "test title",
 	})
 
 	res, err := s.db.Query(`SELECT COUNT(*) FROM books WHERE description='test description' AND title='test title'`)
@@ -57,7 +58,7 @@ func (s *StoreSuite) TestCreateBooks() {
 		if err != nil {
 			s.T().Error(err)
 		}
-	} 
+	}
 
 	if count != 1 {
 		s.T().Errorf("incorrect count, wanted 1, got %d", count)
@@ -65,7 +66,7 @@ func (s *StoreSuite) TestCreateBooks() {
 }
 
 func (s *StoreSuite) TestGetBooks() {
-	_, err := s.db.Query(`INSERT INTO books (title, description) VALUES ('title', 'description')`)
+	_, err := s.db.Query(`INSERT INTO books (title, description) VALUES ('books', 'description')`)
 	if err != nil {
 		s.T().Fatal(err)
 	}
@@ -79,8 +80,8 @@ func (s *StoreSuite) TestGetBooks() {
 	if nBooks != 1 {
 		s.T().Errorf("incorrect count, wanted 1, got %d", nBooks)
 	}
-	
-	expectedBook :=Book{"title", "description"}
+
+	expectedBook := Book{"books", "description"}
 	if *books[0] != expectedBook {
 		s.T().Errorf("incorrect details, expected %v, got %v", expectedBook, *books[0])
 	}
